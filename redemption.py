@@ -9,9 +9,8 @@ redeemables = {
 }
 
 eco_levels = {
-    'starter': 1000,
-    'bronze': 2000,
-    'silver': 3000,
+    'entry': 1000,
+    'gold': 3000,
     'platinum': 5000,
 }
 
@@ -19,7 +18,7 @@ dummy_owner = {
     'name': 'John Doe',
     'overall_eco_points': 1000,
     'eco_points': 2000,
-    'eco_level': "starter",
+    'eco_level': "entry",
 }
 
 def redeem(owner, reward, count=1):
@@ -40,14 +39,12 @@ def redeem(owner, reward, count=1):
 
     # update owner's eco level
     match owner['eco_points']:
-        case x if x < eco_levels['starter']:
-            owner['eco_level'] = 'starter'
-        case x if x < eco_levels['bronze']:
-            owner['eco_level'] = 'bronze'
-        case x if x < eco_levels['silver']:
-            owner['eco_level'] = 'silver'
+        case x if x < eco_levels['entry']:
+            owner['eco_level'] = 'entry'
         case x if x < eco_levels['gold']:
             owner['eco_level'] = 'gold'
+        case x if x < eco_levels['platinum']:
+            owner['eco_level'] = 'platinum'
         case _:
             owner['eco_level'] = 'platinum'
 

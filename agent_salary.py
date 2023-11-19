@@ -180,7 +180,7 @@ bookings = [
         "localisation": {"latitude": 14.2437, "longitude": 118.2437},
         "trash_bin_image_url": "",
         "is_commercial": False,
-        "booking_start_at": "June 13, 2023 at 17:23:33 UTC1:00:00.000000",
+        "booking_start_at": "November 13, 2023 at 17:23:33 UTC1:00:00.000000",
     },
     {
         "_id": {"$oid": "649b0a4d77cb44c555f672f9"},
@@ -193,7 +193,7 @@ bookings = [
         "localisation": {"latitude": 14.2437, "longitude": 118.2437},
         "trash_bin_image_url": "",
         "is_commercial": False,
-        "booking_start_at": "June 13, 2023 at 17:23:33 UTC1:00:00.000000",
+        "booking_start_at": "November 13, 2023 at 17:23:33 UTC1:00:00.000000",
     },
 ]
 
