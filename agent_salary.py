@@ -200,3 +200,5 @@ bookings = [
 total_salary = calculate_bonus(bookings)
 
 print("Total Salary:", total_salary)
+
+################## O(n) ##################
