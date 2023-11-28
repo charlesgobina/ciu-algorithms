@@ -21,61 +21,61 @@ def haversine(lat1, lon1, lat2, lon2):
     return distance
 
 # volume calculator
-def calculate_volume(category, quantity):
-    sizes = { "Bucket": 10, "Trashbag": 27, "Wheelbarrow": 80  }
-    volume = (sizes[category] / 1000)* quantity
-    return int(volume)
+# def calculate_volume(category, quantity):
+#     sizes = { "Bucket": 10, "Trashbag": 27, "Wheelbarrow": 80  }
+#     volume = (sizes[category] / 1000)* quantity
+#     return int(volume)
 
 
-# check if agent is available
-def agent_availability(agent):
-    current_day = datetime.now().weekday()
-    agent_shift = agent.agent_shift[current_day]
+# # check if agent is available
+# def agent_availability(agent):
+#     current_day = datetime.now().weekday()
+#     agent_shift = agent.agent_shift[current_day]
 
-    if (agent_shift == None  or len(agent_shift) == 0 or agent.agent_availability == False):
-        return False
+#     if (agent_shift == None  or len(agent_shift) == 0 or agent.agent_availability == False):
+#         return False
     
-    # get current hour
-    current_hour = datetime.now().hour
-    if (
-    (7 <= current_hour < 12 and "morning" in agent_shift) or
-    (13 <= current_hour < 19 and "afternoon" in agent_shift)):
-        return True
+#     # get current hour
+#     current_hour = datetime.now().hour
+#     if (
+#     (7 <= current_hour < 12 and "morning" in agent_shift) or
+#     (13 <= current_hour < 19 and "afternoon" in agent_shift)):
+#         return True
     
-    return False
+#     return False
 
 
-def agent_assination(request, agent_list):
-    request_coordinantes = {
-        "lat": request.localisation.latitude,
-        "lon": request.localisation.longitude
-    }
+# def agent_assination(request, agent_list):
+#     request_coordinantes = {
+#         "lat": request.localisation.latitude,
+#         "lon": request.localisation.longitude
+#     }
 
-    available_agents = [free_agents for free_agents in agent_list if agent_availability(free_agents)]
-    if (len(available_agents) == 0):
-        return "No available agent"
+#     available_agents = [free_agents for free_agents in agent_list if agent_availability(free_agents)]
+#     if (len(available_agents) == 0):
+#         return "No available agent"
     
-    # get the available_agent location
-    agent_locations_with_closest_proximity_to_request = []
-    for agent in available_agents:
-        agent_location = {
-            "lat": agent.localisation.latitude,
-            "lon": agent.localisation.longitude
-        }
-        distance = haversine(request_coordinantes["lat"], request_coordinantes["lon"], agent_location["lat"], agent_location["lon"])
-        agent_locations_with_closest_proximity_to_request.append({
-            "agent": agent,
-            "distance": distance
-        })
+#     # get the available_agent location
+#     agent_locations_with_closest_proximity_to_request = []
+#     for agent in available_agents:
+#         agent_location = {
+#             "lat": agent.localisation.latitude,
+#             "lon": agent.localisation.longitude
+#         }
+#         distance = haversine(request_coordinantes["lat"], request_coordinantes["lon"], agent_location["lat"], agent_location["lon"])
+#         agent_locations_with_closest_proximity_to_request.append({
+#             "agent": agent,
+#             "distance": distance
+#         })
 
-        # sort the list by distance
-        agent_locations_with_closest_proximity_to_request.sort(key=lambda x: x["distance"])
+#         # sort the list by distance
+#         agent_locations_with_closest_proximity_to_request.sort(key=lambda x: x["distance"])
 
-    return agent_locations_with_closest_proximity_to_request[0]
+#     return agent_locations_with_closest_proximity_to_request[0]
 
     
 
-# OOP version
+# # OOP version
 
 class AgentAvailability:
     def __init__(self, agent):
@@ -100,6 +100,8 @@ class AgentAvailability:
     def get_agent(self):
         return self.agent
 
+
+# doing this assunimg that the backend team merged the user location and their booking to form a request object
 
 class AgentAssignation:
     def __init__(self, request, agent_list):
